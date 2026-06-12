@@ -1,0 +1,31 @@
+{
+  "name": "pharos-guardskill",
+  "version": "0.1.0",
+  "description": "GuardSkill — a read-only pre-transaction smart-contract risk skill for Pharos AI agents. An agent calls it before signing a transaction to a contract and gets a structured risk verdict (proxy/upgradeable, owner powers, mint, pause, blacklist, selfdestruct, fee-on-transfer/honeypot signatures) plus a go / caution / block recommendation.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./mcp": "./src/mcp.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "demo": "tsx demo/demo.ts",
+    "demo:agent": "tsx demo/demo-agent.ts",
+    "mcp": "tsx src/mcp.ts",
+    "test": "tsx test/analyze.test.ts"
+  },
+  "keywords": ["pharos", "ai-agent", "skill", "security", "smart-contract", "mcp", "langchain", "guardskill"],
+  "license": "MIT",
+  "dependencies": {
+    "@langchain/core": "^0.3.26",
+    "@modelcontextprotocol/sdk": "^1.5.0",
+    "viem": "^2.23.14",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.0"
+  }
+}
