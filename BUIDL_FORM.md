@@ -13,17 +13,30 @@ GuardSkill
 Use `assets/logo.png` (export it from `assets/logo.svg` at 480×480 — see note at bottom).
 JPEG/PNG, < 2 MB, 480×480 recommended.
 
-### Vision  (Describe the problem which this project solves)
+### Vision  (Describe the problem which this project solves — **256-char limit**)
+Use this (~250 chars):
 ```
-Autonomous on-chain agents sign transactions, pay, and grant token approvals with no safety check before the signature. An agent has no built-in way to notice that a target contract is an upgradeable proxy whose logic can be swapped out, a token whose owner can mint supply or freeze/blacklist balances, a honeypot that blocks sells, or a contract carrying selfdestruct / privileged withdrawAll. A single bad approval can drain an agent's wallet.
-
-GuardSkill is the missing pre-transaction safety primitive for Pharos agents. Before any value-moving step, an agent calls GuardSkill, which screens the target address from bytecode + on-chain state (no source code needed, read-only, never touches a private key) and returns a contract kind (EOA / EIP-1967 / UUPS / beacon / minimal proxy), risk flags across upgradeability, owner-mint, pause/blacklist freeze, honeypot fees and selfdestruct/withdraw, a 0–100 risk score, and an ok / caution / block decision the agent can act on. It ships as three drop-in surfaces — a LangChain tool, an MCP server, and a pharos-agent-kit Action — so any agent can adopt it in one line.
+Autonomous agents sign txs and approve contracts with no safety check first — blind to upgradeable proxies, owner-mint/blacklist tokens, honeypots, or selfdestruct. GuardSkill is the read-only pre-transaction risk gate an agent calls before it signs.
 ```
+Shorter fallback (~233 chars) if needed:
+```
+Autonomous agents sign txs and approve contracts with no safety check first — blind to upgradeable proxies, owner-mint/blacklist tokens, honeypots, selfdestruct. GuardSkill is the read-only pre-tx risk gate an agent calls before signing.
+```
+(Full long version, for the README / video narration — NOT the 256-char field:
+Autonomous on-chain agents sign transactions, pay, and grant token approvals with no
+safety check before the signature; one bad approval can drain the wallet. GuardSkill
+screens the target from bytecode + on-chain state — read-only, keyless — and returns a
+contract kind, risk flags, a 0–100 score, and an ok/caution/block decision, shipped as a
+LangChain tool, an MCP server, and a pharos-agent-kit Action.)
 
 ### Category
-- Category dropdown: pick the closest available → **Security** (or *Infrastructure* / *Developer Tooling* if Security isn't listed).
-- **Is this BUIDL an AI Agent?** → **No.**
-  (GuardSkill is a *Skill / tool that agents call*, not an autonomous agent itself — this matches the "Skill-to-Agent" track. Only flip to *Yes* if the form blocks submission to the Skill track otherwise.)
+Options on the form: Crypto / Web3 · Quantum Computing · Space · AI/Robotics · Other.
+→ **Crypto / Web3**  (core function = smart-contract / on-chain risk analysis; "AI/Robotics"
+  is defensible since it's an agent Skill, but Crypto/Web3 most accurately describes what it does.)
+
+### Is this BUIDL an AI Agent?
+→ **No.**  (GuardSkill is a *Skill / tool that agents call*, not an autonomous agent itself —
+  matches the "Skill-to-Agent" track. Only flip to *Yes* if the form blocks the Skill track otherwise.)
 
 ### GitHub/Gitlab/Bitbucket  *(required)*
 ```
